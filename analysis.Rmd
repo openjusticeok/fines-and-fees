@@ -17,6 +17,7 @@ output:
 library(ojo)
 library(knitr)
 
+
 nc <- function(x) {comma(x, digits = 0)}
 
 ```
