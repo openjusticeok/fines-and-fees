@@ -22,32 +22,45 @@ nc <- function(x) {comma(x, digits = 0)}
 
 ```
 
-Background information: Why are we researching this topic? What is the expected product? A blog post? Analysis for an internal or external partner?
+Background information: Why are we researching this topic? What is the expected product? A blog post? Analysis for an internal or external partner? 
 
-> **Research Question**
+Salient topic this legislative session/ legislative priority. 3 blog posts. Currently for internal work.  
+
+> **How much is being charged in fines and fees throughout the state?**
+> **What proportion of court debt from criminal cases is collected?**
+> **What proportion of court collections comes from misdemeanor and felony cases?**
 
 # Data sources
 
-Where is the data from? The ojo database? OSCN? ODCR? Crime in Oklahoma reports? 
+ojo database- OSCN & ODCR (mins & pays tables)
+Court administrator reports 
 
 ## Timeframe
+Fees assessed and paid 2015-2018
 
-What years/months are you looking at? Year of case filing, first disposition, prison admission, etc.? Be as specific as possible.
+Case file years- 2008:2018
+min_years & pay_years- 2014:2019 (2014 & 2019 in order to convert to fiscal year to allow comparison with court administrator reports)
 
 ## Geography
 
-What courts/counties/states are you looking at?
+The whole state/ all counties
 
 ## Variables
-
-What variables did you use? What types of cases, crimes, etc.?
+Felony (CF) & misdeamnor (CM) cases
+min_type = "fees"
 
 ## Query
 
 If you're using data from the OJO database, include the query you used to pull your data. This may be a function that starts `ojo_query_` or `dbGetQuery`.
 
 ``` {r}
-# d <- ojo_query_disps("TULSA", "CM", 2019)
+#### OSCN ####
+oscn_fees <- ojo_query_mins(oscn_counties, c("CF", "CM"), 2008:2018, min_years = 2014:2019, min_type = "fees")
+oscn_pays <- ojo_query_pays(oscn_counties, c("CF", "CM"), 2008:2018, pay_years = 2014:2019)
+
+#### ODCR ####
+odcr_fees <- ojo_query_mins(odcr_counties, c("CF", "CM"), 2008:2018, min_years = 2014:2019, min_type = "fees")
+odcr_pays <- ojo_query_pays(odcr_counties, c("CF", "CM"), 2008:2018, pay_years = 2014:2019)
 ```
 
 # Checking Data
