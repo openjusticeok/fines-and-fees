@@ -55,8 +55,23 @@ If you're using data from the OJO database, include the query you used to pull y
 
 ``` {r}
 #### OSCN ####
+st <- Sys.time()
 oscn_fees <- ojo_query_mins(oscn_counties, c("CF", "CM"), 2008:2018, min_years = 2014:2019, min_type = "fees")
+Sys.time() - st
+
 oscn_pays <- ojo_query_pays(oscn_counties, c("CF", "CM"), 2008:2018, pay_years = 2014:2019)
+
+
+
+# connect_ojo()
+# oscn_fees <- dbGetQuery(ojo_db,
+#                         "SELECT court, casenum, YEAR(min_date) AS fee_year, SUM(fee_amt) as total_fees
+#                         FROM oscn_mins_2008CF
+#                         WHERE fee_amt IS NOT NULL
+#                         AND min_date > 2013-12-31
+#                         AND fee_amt < 200000
+#                         GROUP BY court, casenum, fee_year"
+#                         )
 
 #### ODCR ####
 odcr_fees <- ojo_query_mins(odcr_counties, c("CF", "CM"), 2008:2018, min_years = 2014:2019, min_type = "fees")
