@@ -1,4 +1,4 @@
-library(ojo)
+library(ojodb)
 options(scipen = 999)
 #CASA, AFIS, CLEET, OIDS, Sheriff
 collections <- read.csv('collections.csv')

@@ -1,4 +1,4 @@
-library(ojo)
+library(ojodb)
 options(scipen = 999)
 
 #### OSCN ####
